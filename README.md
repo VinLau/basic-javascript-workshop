@@ -20,8 +20,6 @@
   3. In `workshop.js`, fill in the function code and re-run the tests
   4. Continue doing this until all the tests have passed. Then move to the next exercise.
   
-* **NOTE**: To make things more interesting, **there are TWO errors in the unit tests themselves!** If some tests are failing but you think you have a good solution, make sure to look at the code of the tests ;)
-  
 ## Functions
 
 ### `firstLetter`

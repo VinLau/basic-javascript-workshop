@@ -8,7 +8,7 @@ describe('reverseString', function() {
     });
 
     it('Should work with multiple words', function() {
-        expect(reverseString('the quick brown fox')).to.equal('xof nworb ckiuq eht'); // hello, i may be borked
+        expect(reverseString('the quick brown fox')).to.equal('xof nworb kciuq eht'); // hello, i may be borked
     });
 
     it('Should work with empty strings', function() {
