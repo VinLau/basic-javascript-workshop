@@ -191,27 +191,62 @@ function isPalindrome(inputString) {
    }
 }
 
-function wrapCharacter(inputString) {
-   for (var i = 0; i < inputString.length; i += 40) {
-      inputString += "\n";
-      // if (inputString.charAt(i+1) === " ") {
-      //    /* NB: no replaceAt() function in javascript, need to make two strings and put em together */
-      //    var pieceOne = inputString.slice(0, i);
-      //    var pieceTwo = inputString.slice(i+2, inputString.length);
-      //    inputString = pieceOne + pieceTwo;
-      // }
+function wrapCharacterOLD(inputString) {
+   var testString = "";
+   for (var i = 40; i < inputString.length; i += 41) { /* start for loop at 40 so we dont cut the second letter*/
+      /* slice(x, y) slices a string from inclusive x to (optionally) non-inclusive y */
+      if (inputString.charAt(i) === " "){
+         testString = testString + (inputString.slice(i-40, (i)) + '\n');
+      }
+      else{
+         testString = testString + (inputString.slice(i - 40, (i+1)) + "\n");
+      }
+      
    }
-   return inputString;
+   return testString;
 }
 
-console.log(wrapCharacter("Should work with strings less than 40 characters"));
+function wrapCharacter(inputString) {
+   var testString = "";
+   for (var i = 0; i < inputString.length; i += 40) {
+      if ( (i + 40) > inputString.length ){ /* to add the rest of inputString */
+         testString += inputString.slice(i,  i + ((i+40) - inputString.length));
+      }
+      else if ( inputString.charAt(i) === " ") {
+         testString += inputString.slice(i + 1, i + 41) + "\n";
+         i++; /* we need to add to iterator to allow the iterator (which scans the inputString) 
+               to follow along with our 'testString' as it has jumped up by one since we skipped the space */
+      }
+      else {
+         testString += inputString.slice(i, i + 40) + "\n"; /* no spaces, standard 40 lines plus newline */
+      }
+   }
+   return testString;
+}
 
 function wrapWord(inputString) {
-
+   var returnString = "";
+   var charCounter = 0;
+   var testArray = inputString.split(" ");
+   for (var i = 0; i < testArray.length; i++) {
+      if ((testArray[i].length + charCounter) > 40) {
+         returnString = returnString.slice(0, (returnString.length - 1)) + "\n" + testArray[i] + " ";
+         charCounter = 1; // for the space we are appending to the next line
+         charCounter += testArray[i].length;
+      }
+      else {
+         returnString += testArray[i] + " ";
+         charCounter += testArray[i].length + 1;
+      }
+   }
+   returnString = returnString.slice(0, returnString.length - 1); // to take away the last " " 
+   return returnString;
 }
 
-function bubbleSort(arrayOfNumbers) {
+console.log(wrapWord("the increased productivity fostered by a friendly environment and quality tools is essential to meet ever increasing demands for software."));
 
+function bubbleSort(arrayOfNumbers) {
+   
 }
 
 /***** DO NOT EDIT AFTER THIS LINE *****/
