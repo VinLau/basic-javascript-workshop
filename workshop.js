@@ -1,5 +1,5 @@
 function firstLetter(inputString) {
-   if (inputString === undefined){
+   if (inputString === undefined) {
       return undefined;
    }
    else {
@@ -8,10 +8,10 @@ function firstLetter(inputString) {
 }
 
 function lastLetter(inputString) {
-   if (inputString === undefined){
+   if (inputString === undefined) {
       return undefined;
    }
-   else if (inputString === ""){
+   else if (inputString === "") {
       return undefined;
    }
    else {
@@ -24,7 +24,7 @@ function lastLetter(inputString) {
 }
 
 function letterAtPosition(inputString, position) {
-   if (inputString === undefined){
+   if (inputString === undefined) {
       return undefined;
    }
    else if (position < 0) {
@@ -36,7 +36,7 @@ function letterAtPosition(inputString, position) {
 }
 
 function addTwoNumbers(num1, num2) {
-   if ( typeof num1 != "number" || typeof num2 != "number" ){ /* recall we can check the data type/primitive with typeof call */
+   if (typeof num1 != "number" || typeof num2 != "number") { /* recall we can check the data type/primitive with typeof call */
       return undefined;
    }
    else {
@@ -45,7 +45,7 @@ function addTwoNumbers(num1, num2) {
 }
 
 function multiplyTwoNumbers(num1, num2) {
-   if ( typeof num1 != "number" || typeof num2 != "number" ){ /* recall we can check the data type/primitive with typeof call */
+   if (typeof num1 != "number" || typeof num2 != "number") { /* recall we can check the data type/primitive with typeof call */
       return undefined;
    }
    else {
@@ -54,16 +54,16 @@ function multiplyTwoNumbers(num1, num2) {
 }
 
 function calculator(operation, num1, num2) {
-   if (operation === "add"){
+   if (operation === "add") {
       return num1 + num2;
    }
-   else if (operation === "sub"){
+   else if (operation === "sub") {
       return num1 - num2;
    }
-   else if (operation === "mult"){
+   else if (operation === "mult") {
       return num1 * num2;
    }
-   else if (operation === "div"){
+   else if (operation === "div") {
       return num1 / num2;
    }
    else {
@@ -72,7 +72,7 @@ function calculator(operation, num1, num2) {
 }
 
 function repeatString(inputString, numRepetitions) {
-   if (numRepetitions < 0 || numRepetitions === 0){
+   if (numRepetitions < 0 || numRepetitions === 0) {
       return "";
    }
    else {
@@ -83,31 +83,31 @@ function repeatString(inputString, numRepetitions) {
 function reverseString(inputString) {
    var RV = "";
    for (var i = 0; i < inputString.length; i++) {
-      RV += inputString[(inputString.length - 1) - i] ;
+      RV += inputString[(inputString.length - 1) - i];
    }
    return RV;
 }
 
 function longestWord(inputString) {
-   if (inputString === ""){
+   if (inputString === "") {
       return "";
    }
-   else if (!(inputString.includes(" "))){ /* we don't have to make loops to check for existance of a char like java, use includes! */
+   else if (!(inputString.includes(" "))) { /* we don't have to make loops to check for existance of a char like java, use includes! */
       return inputString;
    }
    else {
       var testVar = "";
       var RV = "";
-      
+
       for (var i = 0; i < inputString.length; i++) {
-         
+
          if (inputString[i] === " " || inputString[i] === "." || inputString[i] === "," || i === (inputString.length - 1)) {
             /* need the last conditional in case the string does not have a period or space etc */
             if (testVar.length > RV.length) {
                RV = testVar;
             }
             testVar = ""; /* reset the testing variable */
-            continue; /* ie if you encounter a new word, skip adding a character to RV */ 
+            continue; /* ie if you encounter a new word, skip adding a character to RV */
          }
          testVar += inputString[i];
 
@@ -119,26 +119,26 @@ function longestWord(inputString) {
 function capitalize(inputString) {
    var RV = "";
    for (var i = 0; i < inputString.length; i++) {
-      if (inputString[i-1] === " " || inputString[i-1] === "." || inputString[i-1] === "," || i === 0) {
+      if (inputString[i - 1] === " " || inputString[i - 1] === "." || inputString[i - 1] === "," || i === 0) {
          /* last conditional is for the beginning word where you would not expect a space infront */
          RV += inputString.charAt(i).toLocaleUpperCase(); /* using charAt(i) instead of string[i], same thing really */
       }
       else {
          RV += inputString[i].toLocaleLowerCase();
       }
-   } 
+   }
    return RV;
 }
 
 function sumOfNumbers(arrayOfNumbers) {
    var RV = 0; /* remember to initialize primitive ! */
-   
+
    if (arrayOfNumbers.length === 0) {
       return 0;
    }
-   
+
    for (var i = 0; i < arrayOfNumbers.length; i++) {
-      if (typeof arrayOfNumbers[i] !== "number"){
+      if (typeof arrayOfNumbers[i] !== "number") {
          return undefined;
       }
       RV = RV + arrayOfNumbers[i];
@@ -146,43 +146,67 @@ function sumOfNumbers(arrayOfNumbers) {
    return RV;
 }
 
-function uniqueElements(array1, array2) {
+function uniqueElements(array1, array2) { /* original answer has two nested for loops (i.e. basically a foreach loop for each array), not efficient */
    var RA = [];
-   if (!(Array.isArray(array1) || Array.isArray(array2))) {
+   var placeHolder;
+   // if (!(Array.isArray(array1) || Array.isArray(array2))) {
+   //    return undefined;
+   // }
+   // else if (array1.length === 0) {
+   //    return array2;
+   // }
+   // else if (array2.length === 0) {
+   //    return array1;
+   // }
+   // for (var i = 0; i < array1.length; i++) {
+   //    for (var j = 0; j < array2.length; j++) {
+   //       if (array1[i] === array2[j]) {
+   //          break;
+   //       }
+   //       if ((array2.length - 1) === j) {
+   //          RA.push(array1[i]);
+   //       }
+   //    }
+   // }
+   // for (var i = 0; i < array2.length; i++) {
+   //    for (var j = 0; j < array1.length; j++) {
+   //       if (array2[i] === array1[j]) {
+   //          break;
+   //       }
+   //       if ((array1.length - 1) === j) {
+   //          RA.push(array2[i]);
+   //       }
+   //    }
+   // }
+
+   if (Array.isArray(array1) && Array.isArray(array2)) {
+      RA = array1.concat(array2);
+      RA = RA.sort();
+
+      for (var i = 0; i < RA.length; i++) {
+         if (RA[i] === RA[i + 1]) {
+            placeHolder = RA[i]; /* this statement is necessary in case we don't have pairs of similar elements, i.e. 2 2 2 as 2 2 would be thrown out but the remaining 2 would be 'unique'*/
+            RA.splice(i, 2);
+            i--; // so we can restart the iterator and be at the current array index
+         }
+         else if (placeHolder === RA[i]) {
+            placeHolder = RA[i];
+            RA.splice(i, 1); // only need to take that one character out, we can encounter it many times though...
+            i--;
+         }
+      }
+
+   }
+   else {
       return undefined;
    }
-   else if (array1.length === 0){
-      return array2;
-   }
-   else if (array2.length === 0){
-      return array1;
-   }
-   for (var i = 0; i < array1.length; i++) {
-      for (var j = 0; j < array2.length; j++) {
-         if (array1[i] === array2[j]) {
-            break;
-         }
-         if ((array2.length - 1) === j) {
-            RA.push(array1[i]);
-         }
-      }
-   }
-   for (var i = 0; i < array2.length; i++) {
-      for (var j = 0; j < array1.length; j++) {
-         if (array2[i] === array1[j]) {
-            break;
-         }
-         if ((array1.length - 1) === j) {
-            RA.push(array2[i]);
-         }
-      }
-   }
+
    return RA;
 }
 
 function isPalindrome(inputString) {
    var testString = inputString.replace(/\W/g, "");
-   testString = testString.toLowerCase(); /* easier to check if all letters are lower case */;
+   testString = testString.toLowerCase(); /* easier to check if all letters are lower case */ ;
    if (reverseString(testString).toLowerCase() === testString) { /*using our function we made earlier!*/
       return true;
    }
@@ -195,13 +219,13 @@ function wrapCharacterOLD(inputString) {
    var testString = "";
    for (var i = 40; i < inputString.length; i += 41) { /* start for loop at 40 so we dont cut the second letter*/
       /* slice(x, y) slices a string from inclusive x to (optionally) non-inclusive y */
-      if (inputString.charAt(i) === " "){
-         testString = testString + (inputString.slice(i-40, (i)) + '\n');
+      if (inputString.charAt(i) === " ") {
+         testString = testString + (inputString.slice(i - 40, (i)) + '\n');
       }
-      else{
-         testString = testString + (inputString.slice(i - 40, (i+1)) + "\n");
+      else {
+         testString = testString + (inputString.slice(i - 40, (i + 1)) + "\n");
       }
-      
+
    }
    return testString;
 }
@@ -209,13 +233,14 @@ function wrapCharacterOLD(inputString) {
 function wrapCharacter(inputString) {
    var testString = "";
    for (var i = 0; i < inputString.length; i += 40) {
-      if ( (i + 40) > inputString.length ){ /* to add the rest of inputString */
-         testString += inputString.slice(i,  i + ((i+40) - inputString.length));
+      if ((i + 40) > inputString.length) { /* to add the rest of inputString */
+         testString += inputString.slice(i, i + ((i + 40) - inputString.length));
       }
-      else if ( inputString.charAt(i) === " ") {
+      else if (inputString.charAt(i) === " ") {
          testString += inputString.slice(i + 1, i + 41) + "\n";
-         i++; /* we need to add to iterator to allow the iterator (which scans the inputString) 
-               to follow along with our 'testString' as it has jumped up by one since we skipped the space */
+         i++;
+         /* we need to add to iterator to allow the iterator (which scans the inputString) 
+                       to follow along with our 'testString' as it has jumped up by one since we skipped the space */
       }
       else {
          testString += inputString.slice(i, i + 40) + "\n"; /* no spaces, standard 40 lines plus newline */
@@ -243,28 +268,48 @@ function wrapWord(inputString) {
    return returnString;
 }
 
-console.log(wrapWord("the increased productivity fostered by a friendly environment and quality tools is essential to meet ever increasing demands for software."));
-
 function bubbleSort(arrayOfNumbers) {
-   
+   if (arrayOfNumbers.length === 0) {
+      return [];
+   }
+
+   else {
+      var masterFlag = true;
+      while (masterFlag) {
+         var insideFlag = true;
+         for (var i = 0; i < arrayOfNumbers.length; i++) {
+            if (arrayOfNumbers[i] > arrayOfNumbers[i + 1]) {
+               insideFlag = false;
+               var swap = arrayOfNumbers[i];
+               arrayOfNumbers[i] = arrayOfNumbers[i + 1];
+               arrayOfNumbers[i + 1] = swap;
+            }
+            else if (insideFlag === true && i === (arrayOfNumbers.length - 1)) {
+               masterFlag = false;
+            }
+         }
+      }
+   }
+
+   return arrayOfNumbers;
 }
 
 /***** DO NOT EDIT AFTER THIS LINE *****/
 module.exports = {
-    firstLetter: firstLetter,
-    lastLetter: lastLetter,
-    letterAtPosition: letterAtPosition,
-    addTwoNumbers: addTwoNumbers,
-    multiplyTwoNumbers: multiplyTwoNumbers,
-    calculator: calculator,
-    repeatString: repeatString,
-    reverseString: reverseString,
-    longestWord: longestWord,
-    capitalize: capitalize,
-    sumOfNumbers: sumOfNumbers,
-    uniqueElements: uniqueElements,
-    isPalindrome: isPalindrome,
-    wrapCharacter: wrapCharacter,
-    wrapWord: wrapWord,
-    bubbleSort: bubbleSort
+   firstLetter: firstLetter,
+   lastLetter: lastLetter,
+   letterAtPosition: letterAtPosition,
+   addTwoNumbers: addTwoNumbers,
+   multiplyTwoNumbers: multiplyTwoNumbers,
+   calculator: calculator,
+   repeatString: repeatString,
+   reverseString: reverseString,
+   longestWord: longestWord,
+   capitalize: capitalize,
+   sumOfNumbers: sumOfNumbers,
+   uniqueElements: uniqueElements,
+   isPalindrome: isPalindrome,
+   wrapCharacter: wrapCharacter,
+   wrapWord: wrapWord,
+   bubbleSort: bubbleSort
 };
